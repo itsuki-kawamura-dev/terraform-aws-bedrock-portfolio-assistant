@@ -21,3 +21,12 @@ resource "aws_lambda_function" "portfolio_assistant" {
     Project = var.project_name
   }
 }
+
+resource "aws_lambda_permission" "api_gateway" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.portfolio_assistant.function_name
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "${aws_apigatewayv2_api.portfolio_api.execution_arn}/*/*"
+}
