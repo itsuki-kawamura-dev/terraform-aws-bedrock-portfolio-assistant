@@ -3,7 +3,7 @@ import boto3
 
 bedrock = boto3.client("bedrock-runtime")
 
-MODEL_ID = "amazon.nova-micro-v1:0"
+MODEL_ID = "amazon.nova-lite-v1:0"
 
 
 def lambda_handler(event, context):
