@@ -55,7 +55,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: ${{ sec.IAM_ROLE_ARN }}
+          role-to-assume: ${{ secrets.IAM_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Terraform Format Check
@@ -71,5 +71,4 @@ jobs:
         run: terraform plan
 
       - name: Terraform Apply
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve
